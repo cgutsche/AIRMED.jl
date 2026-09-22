@@ -1,0 +1,31 @@
+# Julia
+Manifest.toml
+*.jl.cov
+*.jl.*.cov
+*.jl.mem
+/deps/deps.jl
+LocalPreferences.toml
+JuliaLocalPreferences.toml
+
+# Documentation
+docs/build/
+docs/site/
+docs/Manifest.toml
+
+# Agent and editor configuration
+.claude/
+.vscode/
+.idea/
+*.code-workspace
+
+# Run artefacts (these belong in the AIRMED_Benchmarks repository)
+*.log
+*.out
+llm_calls*
+data/
+plots/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini

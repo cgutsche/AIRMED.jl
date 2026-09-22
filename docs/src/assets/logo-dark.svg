@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Dark-theme variant of AIRMED_logo.svg: black wordmark and outlines
+     recoloured to #f2f2f2 so the logo stays readable on a dark background.
+     Colours of the mark itself are unchanged. -->
+
+<svg
+   width="495mm"
+   height="89mm"
+   viewBox="0 0 495 89"
+   version="1.1"
+   id="svg1"
+   xml:space="preserve"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"><defs
+     id="defs1" /><g
+     id="layer1"><text
+       xml:space="preserve"
+       style="font-size:70.5556px;text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#20993b;fill-opacity:1;stroke-width:0.264583"
+       x="95.455116"
+       y="63.44804"
+       id="text8-1"><tspan
+         id="tspan8-4"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:70.5556px;font-family:Berenika;-inkscape-font-specification:Berenika;fill:#f2f2f2;fill-opacity:1;stroke-width:0.264583"
+         x="95.455116"
+         y="63.44804">AIRMED.jl</tspan></text><g
+       id="g2"
+       transform="translate(-1.2992366,-85.041825)"><g
+         id="g6"><g
+           id="g7"><path
+             id="rect1"
+             style="fill:#f2f2f2;fill-opacity:1;stroke-width:0.264583"
+             d="m 40.68317,130.57369 2.862443,-0.4742 c 0.502514,10.99817 2.754121,21.39183 7.733254,31.84032 -1.578093,1.23211 -2.460177,2.19669 -6.615161,1.05273 -3.488318,-10.54089 -4.080311,-21.43741 -3.980538,-32.41887 z" /><path
+             id="path2"
+             style="fill:#20993b;fill-opacity:1;stroke:#f2f2f2;stroke-width:2.865;stroke-dasharray:none;stroke-opacity:1"
+             d="m 58.30552,105.8939 c 2.32553,10.42998 -8.010327,17.55699 -16.209585,25.24138 -30.910418,-22.03243 -10.428316,-42.080298 0.139241,-30.7099 6.459535,-6.956578 14.50152,-2.454549 16.070344,5.46852 z" /><g
+             id="g5"><path
+               id="path2-5"
+               style="fill:#9d52ac;fill-opacity:1;stroke:#f2f2f2;stroke-width:2.865;stroke-dasharray:none;stroke-opacity:1"
+               d="m 67.679459,149.69885 c -10.566793,1.59232 -16.95545,-9.21551 -24.04917,-17.93083 24.134962,-29.29821 42.705238,-7.46755 30.625379,2.28112 6.48904,6.92907 1.436996,14.63742 -6.576209,15.64971 z" /><path
+               id="path2-5-1"
+               style="fill:#c5503b;fill-opacity:1;stroke:#f2f2f2;stroke-width:2.865;stroke-dasharray:none;stroke-opacity:1"
+               d="m 14.258143,117.6719 c 10.129754,-3.40303 18.298113,6.13123 26.797463,13.48233 -18.680718,33.0441 -40.75972246,14.76978 -30.556226,3.07158 -7.5936702,-5.697 -3.9569259,-14.16553 3.758763,-16.55391 z" /></g></g></g></g></g></svg>
