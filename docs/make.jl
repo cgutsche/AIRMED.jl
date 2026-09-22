@@ -17,7 +17,7 @@ makedocs(;
     repo     = Documenter.Remotes.GitHub(USER, REPO),
     format   = Documenter.HTML(;
         canonical     = "https://$USER.github.io/$REPO",
-        edit_link     = "master",
+        edit_link     = "main",
         prettyurls    = get(ENV, "CI", "false") == "true",
         collapselevel = 1,
     ),
@@ -36,6 +36,6 @@ makedocs(;
 
 deploydocs(;
     repo      = "github.com/$USER/$REPO.git",
-    devbranch = "master",
+    devbranch = "main",
     push_preview = true,
 )
