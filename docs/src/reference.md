@@ -10,6 +10,12 @@ belong to. The hand-written contracts, including the full keyword list of
 Pages = ["reference.md"]
 ```
 
+## Module
+
+```@docs
+AIRMED
+```
+
 ## Problem definition
 
 ```@docs
