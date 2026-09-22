@@ -6,10 +6,6 @@
 </p>
 
 <p align="center">
-  <strong>A digital twin that notices when it is wrong, works out what is missing, and rebuilds itself from physical components.</strong>
-</p>
-
-<p align="center">
   <img alt="Julia 1.12" src="https://img.shields.io/badge/Julia-1.12-9558B2">
   <img alt="Status: research prototype" src="https://img.shields.io/badge/status-research%20prototype-orange">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a>
@@ -18,10 +14,11 @@
 
 ---
 
-AIRMED is a Julia framework for **self-adapting, explainable digital twins**. It
-compares a ModelingToolkit model against measurements, detects when the two have
-drifted apart, diagnoses the cause from the sensors, and proposes a physical
-component with fitted parameters that closes the gap.
+AIRMED is a Julia framework for **self-adapting, self-healing, and explainable 
+simulation models for digital twins**. It compares a ModelingToolkit model against 
+measurements, detects when the two have drifted apart, diagnoses the cause from the 
+sensors, and proposes a physical component with fitted parameters that closes the gap,
+using an agent-in-the-loop.
 
 The defining constraint is:
 
@@ -200,19 +197,4 @@ julia --project=docs -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.in
 julia --project=docs docs/make.jl
 ```
 
-## Status and limitations
 
-Research prototype, pinned to ModelingToolkit v9. The interfaces may change.
-
-- **FMI and NeuralFMU support is planned, not implemented.**
-- The drift check is a change detector, so a fault that is already steady when
-  the window opens can pass it. Adequacy after adaptation is therefore judged
-  against sensor noise rather than by that check alone.
-- The fit objective weights channels by RMS rather than by sensor noise, which
-  can leave a small bias in the fitted parameter.
-- Escalation on an inadequate structure (`escalate_on_inadequate_structure`) is
-  opt-in, so that results remain comparable with earlier runs.
-
-## License
-
-[MIT](LICENSE), © 2026 AIRMED Contributors.
