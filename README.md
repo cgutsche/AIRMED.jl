@@ -144,20 +144,7 @@ residuals alone.
 | `:claude_cli` | A local Claude Code CLI in print mode |
 | `:ollama_native` | The native `/api/chat` endpoint of Ollama, required for reasoning models, whose `think` flag the `/v1` shim ignores |
 
-Local models are fully supported: the published evaluations run an 8B model on
-CPU alongside a frontier model, on identical prompts.
-
-## Evaluation
-
-The case studies, benchmarks and plotting scripts are maintained in the
-**AIRMED_Benchmarks** repository, together with the resulting figures and the
-recorded run data. They cover hook-evidence ablations, backend comparisons,
-per-phase workflow timing and the fault scenarios. The configuration of each
-run, and which settings were not recorded, is documented in
-`docs/evaluation_config.md` of that repository.
-
-Benchmarks that measure wall-clock time must run alone on the machine; the
-corresponding scripts state this.
+Local models are fully supported.
 
 ## Repository layout
 
@@ -181,20 +168,4 @@ separate **AIRMED_Benchmarks** repository.
 
 ## Documentation
 
-The rendered documentation is at <https://cgutsche.github.io/AIRMED.jl/dev/>. It is
-built with Documenter from `docs/` and deployed by the `Documentation` workflow.
-
-- [docs/src/workflow.md](docs/src/workflow.md): the workflow, step by step
-- [docs/src/api.md](docs/src/api.md): types, keyword arguments, return values
-- [docs/src/design.md](docs/src/design.md): rationale behind the analysis steps
-- [agents.md](agents.md): specification for AI coding assistants working in this repository
-- `docs/evaluation_config.md` in AIRMED_Benchmarks: configuration of the published runs
-
-To build the site locally:
-
-```bash
-julia --project=docs -e 'using Pkg; Pkg.develop(PackageSpec(path=pwd())); Pkg.instantiate()'
-julia --project=docs docs/make.jl
-```
-
-
+A detailed documentation can be found [here](https://cgutsche.github.io/AIRMED.jl/dev/).
