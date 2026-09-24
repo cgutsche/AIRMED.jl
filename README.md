@@ -47,19 +47,7 @@ simulate → compare to data → detect drift
      escalate to a human, with the measured evidence
 ```
 
-Three properties distinguish this from querying a model directly:
-
-- **The simplest explanation is tried first.** A drifted existing parameter is
-  diagnosed as such by one local optimisation, without an LLM call and without
-  adding a component.
-- **The evidence is measured, not learned.** The hook-local characterisation is
-  classical numerics on measured channels: a conservation-law residual, its
-  signal-to-noise ratio against the declared sensor noise, a nearest-neighbour
-  test for hidden state, a periodogram and an STLSQ sparse fit.
-- **Verdicts are per channel, against sensor noise.** A model cannot fit better
-  than its measurement, so a residual at the noise floor is the best attainable
-  result. An averaged score would allow one badly fitted channel to be hidden
-  by the remaining ones.
+Hence, non-explainable results derived from data-driven methods are just use for internal analysis. All results remain explainable models.
 
 ## Quick start
 
