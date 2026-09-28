@@ -14,7 +14,7 @@
 
 ---
 
-AIRMED is a Julia framework for **self-adapting, self-healing, and explainable 
+AIRMED (**A**daptive **I**mprovement and **R**ealignment of Simulation **M**od**e**ls for **D**igital Twins}) is a Julia framework for ** explainable self-adapting and self-healing
 simulation models for digital twins**. It compares a ModelingToolkit model against 
 measurements, detects when the two have drifted apart, diagnoses the cause from the 
 sensors, and proposes a physical component with fitted parameters that closes the gap,
