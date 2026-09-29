@@ -386,7 +386,9 @@ function propose_model_adaptation(
         over  = String[]
         for (nm, rmse) in per_sensor
             j = findfirst(s -> string(s) == nm, string.(problem.observable_states))
-            isnothing(j) && continue
+            # No declared noise floor for this channel (or none at all):
+            # `observation_noise` is optional unless `hook_residuals` is set.
+            (isnothing(j) || j > length(problem.observation_noise)) && continue
             sigma = problem.observation_noise[j]
             sigma > 0 && rmse > _hl_accept_factor(length(data_times), 1) * sigma &&
                 push!(over, "$nm ($(round(rmse/sigma; sigdigits=3))x sigma)")
@@ -440,7 +442,7 @@ function propose_model_adaptation(
     if isfinite(fit_loss)
         for (nm, rmse) in best_per_sensor
             k = findfirst(v -> string(v) == nm, string.(problem.observable_states))
-            isnothing(k) && continue
+            (isnothing(k) || k > length(problem.observation_noise)) && continue
             sigma = problem.observation_noise[k]
             sigma > 0 && rmse / sigma > worst && (worst = rmse / sigma; worst_ch = nm)
         end
@@ -3852,13 +3854,14 @@ end
 
 function _try_build_model(code::AbstractString)
     # The generated code carries its own imports from model_preamble.
-    # invokelatest is required for the world age include_string creates.
+    # invokelatest is required for the world age include_string creates; since
+    # Julia 1.12 that includes `isdefined`, whose bindings are world-partitioned.
     try
         mod = Module(:AIRMED_ADAPTED)
         include_string(mod, code)
-        if isdefined(mod, :adapted_model)
+        if Base.invokelatest(isdefined, mod, :adapted_model)
             return Base.invokelatest(getfield, mod, :adapted_model), "model built"
-        elseif isdefined(mod, :adapted_circuit)
+        elseif Base.invokelatest(isdefined, mod, :adapted_circuit)
             # Backward compatibility: older user-supplied templates may still
             # define `adapted_circuit`.  Accept either name.
             return Base.invokelatest(getfield, mod, :adapted_circuit), "model built"

@@ -10,6 +10,8 @@
   <img alt="Status: research prototype" src="https://img.shields.io/badge/status-research%20prototype-orange">
   <a href="LICENSE"><img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-blue"></a>
   <a href="https://cgutsche.github.io/AIRMED.jl/dev/"><img alt="Documentation" src="https://img.shields.io/badge/docs-dev-blue"></a>
+  <a href="https://github.com/cgutsche/AIRMED.jl/actions/workflows/CI.yml"><img alt="CI" src="https://github.com/cgutsche/AIRMED.jl/actions/workflows/CI.yml/badge.svg?branch=main"></a>
+  <a href="https://codecov.io/gh/cgutsche/AIRMED.jl"><img alt="Coverage" src="https://codecov.io/gh/cgutsche/AIRMED.jl/branch/main/graph/badge.svg"></a>
 </p>
 
 ---

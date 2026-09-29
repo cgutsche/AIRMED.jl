@@ -23,7 +23,9 @@ end
 The names of all state variables of `sys`.
 """
 function get_state_names(sys::ODESystem)::Vector{Symbol}
-    return [Symbol(nameof(s)) for s in unknowns(sys)]
+    # `nameof` fails on a state: `unknowns(sys)` returns it applied to the
+    # independent variable (e.g. `cap₊v(t)`), which has no name of its own.
+    return [Symbol(ModelingToolkit.getname(s)) for s in unknowns(sys)]
 end
 
 """
@@ -32,7 +34,7 @@ end
 The names of all parameters of `sys`.
 """
 function get_param_names(sys::ODESystem)::Vector{Symbol}
-    return [Symbol(nameof(p)) for p in parameters(sys)]
+    return [Symbol(ModelingToolkit.getname(p)) for p in parameters(sys)]
 end
 
 """
