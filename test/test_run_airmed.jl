@@ -9,6 +9,7 @@ which test_electrical.jl includes once — see the ordering note in runtests.jl.
 """
 
 using Test
+using Random
 
 const CHEAP_ADAPT = (; max_retries = 0, fit_iters = 30)
 
@@ -27,7 +28,7 @@ const CHEAP_ADAPT = (; max_retries = 0, fit_iters = 30)
     @testset "a UDE that explains too little of the drift gates the adaptation" begin
         state, upd, adaptation = @test_logs (:warn, r"skipping structural adaptation") match_mode = :any run_airmed(
             problem, base_ode!, nn_input_fn; n_points = 100, verbose = false,
-            train_ude = true, max_iters = 0, adapt = true,
+            train_ude = true, max_iters = 0, rng = Xoshiro(0), adapt = true,
             adapt_min_drift_explained = 1.0, adapt_kwargs = CHEAP_ADAPT)
         @test !isnothing(upd) && upd.success
         @test isnothing(adaptation)
@@ -35,11 +36,14 @@ const CHEAP_ADAPT = (; max_retries = 0, fit_iters = 30)
     end
 
     @testset "with the gate disabled, the UDE evidence reaches the prompt" begin
+        # An untrained correction can fit worse than the base model, i.e. explain
+        # a negative share of the drift; a threshold of 0 must still not skip.
         _, upd, adaptation = run_airmed(problem, base_ode!, nn_input_fn;
                                         n_points = 100, verbose = false,
-                                        train_ude = true, max_iters = 0, adapt = true,
-                                        adapt_min_drift_explained = 0.0,
+                                        train_ude = true, max_iters = 0, rng = Xoshiro(0),
+                                        adapt = true, adapt_min_drift_explained = 0.0,
                                         adapt_kwargs = CHEAP_ADAPT)
+        @test AIRMED._mean_drift_explained(upd) < 0     # the seed gives the negative case
         @test !isnothing(adaptation)
         # Input ranges were derived from the fitted trajectory, so the network
         # was characterised rather than skipped.

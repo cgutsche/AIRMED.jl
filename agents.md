@@ -54,9 +54,9 @@ with the manifest, not from the `[compat]` ranges.
 |-------------------------|--------------------------------------|
 | Language                | Julia 1.12.4                        |
 | Equation-Based Modeling | ModelingToolkit.jl 9.84.0 (`[compat]` allows 9, 10, 11) |
-| NeuralNet Integration   | ModelingToolkitNeuralNets.jl 1.7.0  |
+| NeuralNet Integration   | Lux.jl; ModelingToolkitNeuralNets.jl 1.7.0 in the tests only (symbolic UDE) |
 | Neural Differential Eq. | Lux.jl 1.31.4                       |
-| Test-only domain library| ModelingToolkitStandardLibrary.jl 2.21.1 |
+| Test-only domain library| ModelingToolkitStandardLibrary.jl 2.21.1 (`[extras]`) |
 | FMI Support             | FMI.jl, FMIFlux.jl: **planned, not yet implemented** |
 | Sensitivity/Optimization| SciMLSensitivity.jl, Optimization.jl|
 | Symbolic Regression     | Built-in STLSQ (`sparse_regression`) with caller-supplied basis terms |
@@ -114,10 +114,10 @@ depends on this package.
 > `port_aliases`, `connector_guesses`, `adaptation_guesses`, and optional
 > `extra_basis` terms for symbolic regression.
 >
-> Note that `ModelingToolkitStandardLibrary` currently appears in `[deps]` as
-> well as `[extras]`. Only the tests and the evaluation scripts require it, so
-> it may be reduced to a test dependency; in either case an import in `src/`
-> remains excluded.
+> `ModelingToolkitStandardLibrary` and `ModelingToolkitNeuralNets` are test-only
+> dependencies (`[extras]` and `[targets] test`), not package dependencies. The
+> evaluation scripts in AIRMED_Benchmarks must declare them, and Plots, in their
+> own environment.
 
 ---
 

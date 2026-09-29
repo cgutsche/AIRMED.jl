@@ -89,7 +89,7 @@ symbolic MTK model, base or adapted.
 - `adapt_input_ranges`: ranges for the network characterisation. `nothing`
   derives them from the fitted trajectory.
 - `adapt_min_drift_explained`: skip the adaptation when a trained UDE explained
-  less of the drift than this. Default `0.25`, `0` disables the check.
+  less of the drift than this. Default `0.25`; `0` or less disables the check.
 - `adapt_kwargs`: forwarded to `propose_model_adaptation`, e.g.
   `(; max_retries = 5)`.
 - `state`: reuse a previous `AgentState` to accumulate history across calls.
@@ -198,7 +198,9 @@ function run_airmed(
         # with one it is gated on how much drift that UDE explained.
         ude_ok           = isnothing(result) || result.success
         drift_explained  = isnothing(result) ? nothing : _mean_drift_explained(result)
-        if adapt && ude_ok &&
+        # A threshold <= 0 disables the gate: a correction worse than the base
+        # model has a negative `drift_explained`, which would still trip `< 0`.
+        if adapt && ude_ok && adapt_min_drift_explained > 0 &&
                 !isnothing(drift_explained) && drift_explained < adapt_min_drift_explained
             @warn "AIRMED: skipping structural adaptation. The UDE correction " *
                   "explained $(round(100 * drift_explained; digits=1))% of the " *
