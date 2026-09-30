@@ -51,21 +51,46 @@ simulate → compare to data → detect drift
 
 Hence, non-explainable results derived from data-driven methods are just use for internal analysis. All results remain explainable models.
 
-## Quick start
+## Installation
+
+AIRMED requires Julia 1.12 or later and is registered in the General registry.
+In the Julia REPL, press `]` to enter the package manager:
+
+```julia-repl
+pkg> add AIRMED
+```
+
+or, equivalently, from code or a script:
+
+```julia
+using Pkg
+Pkg.add("AIRMED")
+```
+
+Update with `pkg> update AIRMED`.
+
+AIRMED imports no component library itself. Add the one your model is built
+from next to it, for example `pkg> add ModelingToolkitStandardLibrary`.
+
+### Development
+
+Clone this repository and then:
 
 ```bash
-git clone <this repository>
-cd AIRMED
 julia --project=. -e 'using Pkg; Pkg.instantiate()'
 julia --project=. -e 'using Pkg; Pkg.test()'
 ```
 
-The test suite requires no LLM and no network. It uses an RC circuit whose true
-behaviour contains a hidden parallel and a hidden series resistor, and covers
-base simulation, drift detection with all three methods, UDE training in both
-the plain and the symbolic variant, and one full `run_airmed` iteration. The
-structural adaptation is exercised by the case studies in the companion
-evaluation repository rather than by the tests.
+To use a local checkout from another project, run `pkg> dev /path/to/AIRMED.jl`
+there instead of `add`.
+
+The test suite needs no API key and no external network access: the LLM
+backends are exercised against a mock server on `127.0.0.1`. It uses an RC
+circuit whose true behaviour contains a hidden parallel and a hidden series
+resistor, and covers simulation, drift detection, UDE training in the plain and
+the symbolic variant, the hook-local characterisation, the structural adaptation
+with its retry and escalation logic, and the full `run_airmed` workflow. It takes
+about 15 minutes.
 
 Case studies, benchmarks and the scripts producing the published figures live in
 the separate **AIRMED_Benchmarks** repository, which depends on this one. A

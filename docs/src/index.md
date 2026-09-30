@@ -52,19 +52,32 @@ Three properties distinguish this from querying a model directly:
 
 ## Installation
 
-```julia
-using Pkg
-Pkg.develop(url = "https://github.com/cgutsche/AIRMED.jl")
+AIRMED requires Julia 1.12 or later and is registered in the General registry,
+so it is added either in the package manager (press `]` in the REPL)
+
+```julia-repl
+pkg> add AIRMED
 ```
 
-From a clone of the repository:
+or from code:
+
+```julia
+using Pkg
+Pkg.add("AIRMED")
+```
+
+AIRMED imports no component library; add the one your model uses, e.g.
+`pkg> add ModelingToolkitStandardLibrary` for the example below.
+
+To work on AIRMED itself, clone it and run the tests:
 
 ```bash
 julia --project=. -e 'using Pkg; Pkg.instantiate()'
 julia --project=. -e 'using Pkg; Pkg.test()'
 ```
 
-The test suite requires no LLM and no network.
+The test suite needs no API key and no external network access; the LLM
+backends are exercised against a local mock server.
 
 ## A minimal problem
 
